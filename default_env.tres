@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.286275, 0.541176, 0.72549, 1 )
+ssao_radius = 5.2
+ssao_intensity = 10.0
+ssao_radius2 = 1.4
+ssao_intensity2 = 5.0
+ssao_color = Color( 0.0823529, 0.572549, 0.411765, 1 )

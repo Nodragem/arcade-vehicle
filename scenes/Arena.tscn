@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Tile1.tscn" type="PackedScene" id=1]
+
+[node name="Arena" type="Spatial"]
+
+[node name="tile-sphere" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 10, 10, -10 )
+visible = false
+
+[node name="tile-sphere2" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, -10, 10, 10, 10 )
+visible = false
+
+[node name="tile-sphere3" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, -10, 10, 10 )
+visible = false
+
+[node name="tile-sphere4" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, 8.74228e-07, 0, 10, -10, 10, -10 )
+visible = false

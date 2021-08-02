@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/suv.glb" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Car.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.1
+
+[sub_resource type="SphereShape" id=2]
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0.709473, 0.644803, 0.484991, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.322823 ), 0.0, 1.93325, 0, 0, Vector2( 0.993031, 0.529994 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.17
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 0, 1, 0 )
+spread = 12.05
+flatness = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.2
+scale_random = 0.7
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 10 )
+hue_variation = 1.0
+
+[sub_resource type="SphereMesh" id=6]
+
+[node name="Car" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="CarBody" type="RigidBody" parent="."]
+physics_material_override = SubResource( 1 )
+gravity_scale = 5.0
+angular_damp = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="CarBody"]
+shape = SubResource( 2 )
+
+[node name="CarMesh" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.04325, 0 )
+
+[node name="RayCast" type="RayCast" parent="CarMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275137, 0 )
+enabled = true
+cast_to = Vector3( 0, -2, 0 )
+
+[node name="Smoke" type="Particles" parent="CarMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.550197, 0, 0.574872 )
+emitting = false
+amount = 16
+randomness = 0.98
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="Smoke2" type="Particles" parent="CarMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.468685, 0, 0.574872 )
+emitting = false
+amount = 16
+randomness = 0.98
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
+
+[editable path="CarMesh"]
